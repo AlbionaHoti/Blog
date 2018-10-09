@@ -29,8 +29,9 @@
         <li><a href="http://github.com/albionahoti"/>GitHub</li>
         <li><a href="mailto:hotialbiona95@gmail.com"/>Email</li>
       </ul>
-
-      <p class="sign_in">Admin Login</p>
+      <% if !user_signed_in? %>
+        <p class="sign_in">Admin Login</p>
+      <% end %>
     </div>
 
     <div id="main_content">
@@ -43,10 +44,12 @@
         <%= link_to "Back to All Posts", root_path %>
       <% end %>  
       
-        <div class="buttons">
-          <p class="button"><%= link_to "New Post", new_post_path %></p>
-          <p class="button">Log Out</p>
-        </div>
+        <% if user_signed_in? %>
+          <div class="buttons">
+            <p class="button"><%= link_to "New Post", new_post_path %></p>
+            <p class="button">Log Out</p>
+          </div>
+        <% end %>
       </div>
       
       <% flash.each do |name, msg| %>
